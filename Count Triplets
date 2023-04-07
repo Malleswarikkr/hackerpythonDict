@@ -1,0 +1,27 @@
+You are given an array and you need to find number of tripets of indices  such that the elements at those indices are in geometric progression for a given common ratio  and .
+Example
+Sample Input 1
+
+6 3
+1 3 9 9 27 81
+Sample Output 1
+
+sol)def countTriplets(arr, r):
+      count=0
+      dicafter={}
+      dictbef={}
+      for v in arr:
+         if v in dicafter:
+             dicafter[v]+=1
+         else:
+            dicafter[v]=1
+      for v in arr:
+        dicafter[v]-=1
+        if v//r in dictbef and v%r==0 and v*r in dicafter:
+            count+=dictbef[v//r]*dicafter[v*r]
+        if v in dictbef:
+            dictbef[v]+=1
+        else:
+            dictbef[v]=1
+    return count
+        
